@@ -1,0 +1,105 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sumer",
+        "startYear": -4500,
+        "endYear": -2000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [45.0, 32.0],
+            [47.0, 32.0],
+            [47.0, 30.0],
+            [45.0, 30.0],
+            [45.0, 32.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ancient Egypt",
+        "startYear": -3100,
+        "endYear": -30
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [31.0, 31.0],
+            [35.0, 31.0],
+            [35.0, 22.0],
+            [31.0, 22.0],
+            [31.0, 31.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Indus Valley",
+        "startYear": -3300,
+        "endYear": -1300
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [68.0, 31.0],
+            [75.0, 31.0],
+            [75.0, 23.0],
+            [68.0, 23.0],
+            [68.0, 31.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ancient China",
+        "startYear": -2100,
+        "endYear": 221
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [105.0, 40.0],
+            [120.0, 40.0],
+            [120.0, 20.0],
+            [105.0, 20.0],
+            [105.0, 40.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Minoan Civilization",
+        "startYear": -3500,
+        "endYear": -1100
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [24.0, 36.0],
+            [26.0, 36.0],
+            [26.0, 34.0],
+            [24.0, 34.0],
+            [24.0, 36.0]
+          ]
+        ]
+      }
+    }
+  ]
+}
