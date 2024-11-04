@@ -5,161 +5,224 @@
     "mapPoints": [
       {
         "id": 1,
-        "name": "Sumer",
-        "description": "The Sumerian civilization is considered one of the most ancient in the world, known for its ziggurats and cuneiform writing.",
-        "x": 60,
-        "y": 30,
+        "name": "Mesopotamia",
+        "description": "Месопотамия, также известная как Междуречье, является регионом между реками Тигр и Евфрат, где возникли одни из самых ранних цивилизаций.",
+        "x": 36.0,
+        "y": 58.0,
         "founded": "c. 4500 BCE",
         "year": -4500,
         "periods": [
           {
+            "id": "meso-ubaid",
             "title": "Ubaid Period",
             "yearRange": "c. 6500–3800 BCE",
-            "description": "Early settlement and development of agriculture."
+            "startYear": -6500,
+            "endYear": -3800,
+            "description": "Раннее заселение и развитие сельского хозяйства."
           },
           {
+            "id": "meso-uruk",
             "title": "Uruk Period",
             "yearRange": "c. 4000–3100 BCE",
-            "description": "Formation of urban centers and writing."
+            "startYear": -4000,
+            "endYear": -3100,
+            "description": "Формирование городских центров и письменности."
           },
           {
+            "id": "meso-early-dynastic",
             "title": "Early Dynastic Period",
             "yearRange": "c. 2900–2334 BCE",
-            "description": "Rise of city-states and kingship."
+            "startYear": -2900,
+            "endYear": -2334,
+            "description": "Подъем городов-государств и царской власти."
           },
           {
+            "id": "meso-akkadian",
             "title": "Akkadian Period",
             "yearRange": "c. 2334–2154 BCE",
-            "description": "First Semitic empire under Sargon of Akkad."
+            "startYear": -2334,
+            "endYear": -2154,
+            "description": "Первое семитское государство под властью Саргона Аккадского."
           },
           {
+            "id": "meso-ur-iii",
             "title": "Ur III Period",
             "yearRange": "c. 2112–2004 BCE",
-            "description": "Sumerian renaissance and legal reforms."
+            "startYear": -2112,
+            "endYear": -2004,
+            "description": "Шумерский ренессанс и правовые реформы."
           },
           {
+            "id": "meso-old-babylonian",
             "title": "Old Babylonian Period",
             "yearRange": "c. 2000–1600 BCE",
-            "description": "Decline of Sumer and rise of Babylon."
+            "startYear": -2000,
+            "endYear": -1600,
+            "description": "Закат Шумера и восход Вавилона."
           }
         ]
       },
       {
         "id": 2,
         "name": "Ancient Egypt",
-        "description": "The ancient Egyptian civilization is known for its pyramids, pharaohs, and hieroglyphs.",
-        "x": 55.6,
-        "y": 32,
+        "description": "Древнеегипетская цивилизация известна своими пирамидами, фараонами и иероглифами.",
+        "x": 20.0,
+        "y": 56.0,
         "founded": "c. 3100 BCE",
         "year": -3100,
         "periods": [
           {
+            "id": "egypt-early-dynastic",
             "title": "Early Dynastic Period",
             "yearRange": "c. 3100–2686 BCE",
-            "description": "Unification of Upper and Lower Egypt."
+            "startYear": -3100,
+            "endYear": -2686,
+            "description": "Объединение Верхнего и Нижнего Египта."
           },
           {
+            "id": "egypt-old-kingdom",
             "title": "Old Kingdom",
             "yearRange": "c. 2686–2181 BCE",
-            "description": "Age of the Pyramids."
+            "startYear": -2686,
+            "endYear": -2181,
+            "description": "Эпоха пирамид."
           },
           {
+            "id": "egypt-first-intermediate",
             "title": "First Intermediate Period",
             "yearRange": "c. 2181–2055 BCE",
-            "description": "Political fragmentation and chaos."
+            "startYear": -2181,
+            "endYear": -2055,
+            "description": "Политическая фрагментация и хаос."
           },
           {
+            "id": "egypt-middle-kingdom",
             "title": "Middle Kingdom",
             "yearRange": "c. 2055–1650 BCE",
-            "description": "Reunification and cultural renaissance."
+            "startYear": -2055,
+            "endYear": -1650,
+            "description": "Воссоединение и культурный ренессанс."
           },
           {
+            "id": "egypt-second-intermediate",
             "title": "Second Intermediate Period",
             "yearRange": "c. 1650–1550 BCE",
-            "description": "Hyksos invasion and foreign rule."
+            "startYear": -1650,
+            "endYear": -1550,
+            "description": "Вторжение гиксосов и иностранное правление."
           },
           {
+            "id": "egypt-new-kingdom",
             "title": "New Kingdom",
             "yearRange": "c. 1550–1077 BCE",
-            "description": "Egypt's imperial age and greatest territorial extent."
+            "startYear": -1550,
+            "endYear": -1077,
+            "description": "Имперский век Египта и наибольшее территориальное расширение."
           }
         ]
       },
       {
         "id": 3,
         "name": "Indus Valley",
-        "description": "The Indus Valley Civilization had advanced urban planning and sanitation systems.",
-        "x": 67,
-        "y": 36,
+        "description": "Цивилизация долины Инда известна своим развитым городским планированием и системами канализации.",
+        "x": 70.0,
+        "y": 30.0,
         "founded": "c. 3300 BCE",
         "year": -3300,
         "periods": [
           {
+            "id": "indus-early-harappan",
             "title": "Early Harappan Phase",
             "yearRange": "c. 3300–2600 BCE",
-            "description": "Formation of agricultural communities."
+            "startYear": -3300,
+            "endYear": -2600,
+            "description": "Формирование сельскохозяйственных сообществ."
           },
           {
+            "id": "indus-mature-harappan",
             "title": "Mature Harappan Phase",
             "yearRange": "c. 2600–1900 BCE",
-            "description": "Urbanization and peak of civilization."
+            "startYear": -2600,
+            "endYear": -1900,
+            "description": "Урбанизация и расцвет цивилизации."
           },
           {
+            "id": "indus-late-harappan",
             "title": "Late Harappan Phase",
             "yearRange": "c. 1900–1300 BCE",
-            "description": "Decline and de-urbanization."
+            "startYear": -1900,
+            "endYear": -1300,
+            "description": "Упадок и деурбанизация."
           }
         ]
       },
       {
         "id": 4,
         "name": "Ancient China",
-        "description": "Ancient Chinese civilization is known for its continuous history and many inventions.",
-        "x": 79,
-        "y": 33,
+        "description": "Древний Китай известен своей непрерывной историей и множеством изобретений.",
+        "x": 105.0,
+        "y": 35.0,
         "founded": "c. 2100 BCE",
         "year": -2100,
         "periods": [
           {
+            "id": "china-xia-dynasty",
             "title": "Xia Dynasty",
             "yearRange": "c. 2070–1600 BCE",
-            "description": "Earliest traditional dynasty."
+            "startYear": -2070,
+            "endYear": -1600,
+            "description": "Самая ранняя традиционная династия."
           },
           {
+            "id": "china-shang-dynasty",
             "title": "Shang Dynasty",
             "yearRange": "c. 1600–1046 BCE",
-            "description": "First recorded Chinese dynasty."
+            "startYear": -1600,
+            "endYear": -1046,
+            "description": "Первая записанная китайская династия."
           },
           {
+            "id": "china-zhou-dynasty",
             "title": "Zhou Dynasty",
             "yearRange": "c. 1046–256 BCE",
-            "description": "Longest-lasting Chinese dynasty."
+            "startYear": -1046,
+            "endYear": -256,
+            "description": "Самая продолжительная китайская династия."
           }
         ]
       },
       {
         "id": 5,
         "name": "Minoan Civilization",
-        "description": "The Minoan civilization of Crete is famous for its palace at Knossos and the myth of the Minotaur.",
-        "x": 53.5,
-        "y": 27,
+        "description": "Минойская цивилизация Крита известна своим дворцом в Кноссе и мифом о Минотавре.",
+        "x": 25.0,
+        "y": 35.0,
         "founded": "c. 3500 BCE",
         "year": -3500,
         "periods": [
           {
+            "id": "minoan-early",
             "title": "Early Minoan",
             "yearRange": "c. 3500–2100 BCE",
-            "description": "Formation of complex societies."
+            "startYear": -3500,
+            "endYear": -2100,
+            "description": "Формирование сложных обществ."
           },
           {
+            "id": "minoan-middle",
             "title": "Middle Minoan",
             "yearRange": "c. 2100–1600 BCE",
-            "description": "Construction of palaces and peak of prosperity."
+            "startYear": -2100,
+            "endYear": -1600,
+            "description": "Строительство дворцов и пик процветания."
           },
           {
+            "id": "minoan-late",
             "title": "Late Minoan",
             "yearRange": "c. 1600–1100 BCE",
-            "description": "Decline due to natural disasters and invasions."
+            "startYear": -1600,
+            "endYear": -1100,
+            "description": "Упадок из-за природных катастроф и вторжений."
           }
         ]
       }

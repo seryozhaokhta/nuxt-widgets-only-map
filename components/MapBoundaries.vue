@@ -1,10 +1,10 @@
-<!-- components\MapBoundaries.vue -->
+<!-- components/MapBoundaries.vue -->
 
 <template>
     <svg class="map-boundaries" :style="svgStyle" viewBox="0 0 100 100" preserveAspectRatio="none">
         <g v-for="(feature, index) in filteredFeatures" :key="index">
             <polygon :points="getPolygonPoints(feature.geometry.coordinates)"
-                :fill="getFillColor(feature.properties.name)" stroke="white" :stroke-width="0.5"
+                :fill="getFillColor(feature.properties.id)" stroke="white" :stroke-width="0.5"
                 vector-effect="non-scaling-stroke" @click="selectBoundary(feature)" />
         </g>
     </svg>
@@ -25,6 +25,10 @@ const props = defineProps({
     mapPosition: {
         type: Object,
         required: true,
+    },
+    currentPeriodId: {
+        type: String,
+        required: false,
     },
 });
 
@@ -49,11 +53,13 @@ async function loadGeoJson() {
 function filterFeatures() {
     if (!geoJsonData.value) return;
 
-    filteredFeatures.value = geoJsonData.value.features.filter(
-        (feature) =>
+    filteredFeatures.value = geoJsonData.value.features.filter((feature) => {
+        const withinYearRange =
             feature.properties.startYear <= props.currentYear &&
-            feature.properties.endYear >= props.currentYear
-    );
+            feature.properties.endYear >= props.currentYear;
+
+        return withinYearRange;
+    });
 }
 
 function getPolygonPoints(coordinates) {
@@ -61,21 +67,20 @@ function getPolygonPoints(coordinates) {
         .map((coord) => {
             const [lon, lat] = coord;
             const x = ((lon + 180) / 360) * 100;
-            const y = ((90 - lat) / 180) * 100;
-            return `${x} ${y}`;
+            const latRad = (lat * Math.PI) / 180;
+            const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
+            const y = (1 - mercN / Math.PI) * 50;
+            return `${x},${y}`;
         })
-        .join(', ');
+        .join(' ');
 }
 
-function getFillColor(name) {
-    const colors = {
-        'Sumer': 'rgba(255, 0, 0, 0.5)',
-        'Ancient Egypt': 'rgba(0, 255, 0, 0.5)',
-        'Indus Valley': 'rgba(0, 0, 255, 0.5)',
-        'Ancient China': 'rgba(255, 255, 0, 0.5)',
-        'Minoan Civilization': 'rgba(255, 0, 255, 0.5)',
-    };
-    return colors[name] || 'rgba(255, 255, 255, 0.5)';
+function getFillColor(id) {
+    if (props.currentPeriodId && id === props.currentPeriodId) {
+        return 'rgba(255, 0, 0, 0.5)'; // Выделенный период
+    } else {
+        return 'rgba(0, 0, 255, 0.3)'; // Остальные периоды
+    }
 }
 
 function selectBoundary(feature) {
@@ -98,7 +103,7 @@ onMounted(() => {
 });
 
 watch(
-    () => props.currentYear,
+    () => [props.currentYear, props.currentPeriodId],
     () => {
         filterFeatures();
     }

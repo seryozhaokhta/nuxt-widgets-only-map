@@ -1,4 +1,4 @@
-<!-- components\MapWidget.vue -->
+<!-- components/MapWidget.vue -->
 
 <template>
     <div class="map-widget">
@@ -13,29 +13,35 @@
 
                 <!-- Компонент границ -->
                 <MapBoundaries :currentYear="currentYear" :zoomScale="zoomScale" :mapPosition="mapPosition"
-                    @selectBoundary="selectBoundary" />
+                    :currentPeriodId="currentPeriodId" @selectBoundary="selectBoundary" />
 
                 <!-- Точки на карте -->
                 <MapPoint v-for="point in sortedPoints" :key="point.id" :point="point" :currentYear="currentYear"
                     :zoomScale="zoomScale" @selectPoint="selectPoint" />
             </div>
 
-            <!-- Модальное окно внутри .map-container -->
+            <!-- Модальное окно -->
             <ModalWindow v-if="modalVisible" ref="modalRef" @close="closeModal">
                 <template #header>
                     <h2 class="modal-title">{{ selectedPoint.name }}</h2>
                     <p class="modal-founded">
-                        {{ selectedPoint.founded }} <sup>Foundation</sup>
+                        {{ selectedPoint.founded }} <sup>Основание</sup>
                     </p>
                 </template>
                 <template #body>
                     <!-- Отображение текущего периода, если есть -->
                     <div v-if="currentPeriod">
                         <h3 class="modal-period-title">{{ currentPeriod.title }}</h3>
-                        <p class="modal-period-description">{{ currentPeriod.description }}</p>
-                        <p class="modal-period-year"><em>{{ currentPeriod.yearRange }}</em></p>
+                        <p class="modal-period-description">
+                            {{ currentPeriod.description }}
+                        </p>
+                        <p class="modal-period-year">
+                            <em>{{ currentPeriod.yearRange }}</em>
+                        </p>
                     </div>
-                    <p v-else class="modal-description">{{ selectedPoint.description }}</p>
+                    <p v-else class="modal-description">
+                        {{ selectedPoint.description }}
+                    </p>
 
                     <!-- Таймлайн -->
                     <MapTimeline v-if="selectedPoint.periods" :periods="selectedPoint.periods"
@@ -131,10 +137,15 @@ onMounted(() => {
         });
     });
 
-    sortedPoints.value = [...mapPoints.value].sort((a, b) => a.year - b.year);
+    sortedPoints.value = [...mapPoints.value].sort(
+        (a, b) => a.year - b.year
+    );
 
     if (sortedPoints.value.length > 0) {
-        minYear.value = sortedPoints.value.reduce((min, point) => Math.min(min, point.year), Infinity);
+        minYear.value = sortedPoints.value.reduce(
+            (min, point) => Math.min(min, point.year),
+            Infinity
+        );
         maxYear.value = new Date().getFullYear();
         currentYear.value = minYear.value;
     }
@@ -155,7 +166,9 @@ const mapStyle = computed(() => ({
     transformOrigin: 'top left',
 }));
 
-const formattedCurrentYear = computed(() => formatYearTooltip(debouncedCurrentYear.value));
+const formattedCurrentYear = computed(() =>
+    formatYearTooltip(debouncedCurrentYear.value)
+);
 
 function handleWheel(event) {
     event.preventDefault();
@@ -172,14 +185,21 @@ function zoomOut() {
 }
 
 function zoom(step, event = null) {
-    const newZoomScale = Math.min(Math.max(zoomScale.value + step, minZoom), maxZoom);
+    const newZoomScale = Math.min(
+        Math.max(zoomScale.value + step, minZoom),
+        maxZoom
+    );
 
     if (event) {
         const rect = mapContainer.value.getBoundingClientRect();
         const offsetX = event.clientX - rect.left;
         const offsetY = event.clientY - rect.top;
-        const dx = (offsetX - mapPosition.value.x) * (newZoomScale / zoomScale.value - 1);
-        const dy = (offsetY - mapPosition.value.y) * (newZoomScale / zoomScale.value - 1);
+        const dx =
+            (offsetX - mapPosition.value.x) *
+            (newZoomScale / zoomScale.value - 1);
+        const dy =
+            (offsetY - mapPosition.value.y) *
+            (newZoomScale / zoomScale.value - 1);
 
         mapPosition.value.x -= dx;
         mapPosition.value.y -= dy;
@@ -187,8 +207,12 @@ function zoom(step, event = null) {
         const rect = mapContainer.value.getBoundingClientRect();
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const dx = (centerX - mapPosition.value.x) * (newZoomScale / zoomScale.value - 1);
-        const dy = (centerY - mapPosition.value.y) * (newZoomScale / zoomScale.value - 1);
+        const dx =
+            (centerX - mapPosition.value.x) *
+            (newZoomScale / zoomScale.value - 1);
+        const dy =
+            (centerY - mapPosition.value.y) *
+            (newZoomScale / zoomScale.value - 1);
 
         mapPosition.value.x -= dx;
         mapPosition.value.y -= dy;
@@ -213,7 +237,10 @@ function panMap(event) {
 
 function startPanTouch(event) {
     isPanning.value = true;
-    startPanPosition.value = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+    startPanPosition.value = {
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY,
+    };
 }
 
 function panMapTouch(event) {
@@ -222,7 +249,10 @@ function panMapTouch(event) {
     const deltaY = event.touches[0].clientY - startPanPosition.value.y;
     mapPosition.value.x += deltaX;
     mapPosition.value.y += deltaY;
-    startPanPosition.value = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+    startPanPosition.value = {
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY,
+    };
 }
 
 function endPan() {
@@ -262,13 +292,18 @@ const currentPeriod = computed(() => {
 });
 
 function onPeriodSelected(period) {
-    currentYear.value = Math.floor((period.startYear + period.endYear) / 2);
+    currentYear.value = Math.floor(
+        (period.startYear + period.endYear) / 2
+    );
 }
 
-watch(currentYear, (newYear) => {
+watch(currentYear, () => {
     if (selectedPoint.value && selectedPoint.value.periods) {
         const index = selectedPoint.value.periods.findIndex((period) => {
-            return newYear >= period.startYear && newYear <= period.endYear;
+            return (
+                currentYear.value >= period.startYear &&
+                currentYear.value <= period.endYear
+            );
         });
         if (index !== -1 && index !== currentPeriodIndex.value) {
             currentPeriodIndex.value = index;
@@ -285,11 +320,25 @@ watch(debouncedCurrentYear, () => {
 });
 
 function selectBoundary(feature) {
-    const point = mapPoints.value.find((p) => p.name === feature.properties.name);
+    const point = mapPoints.value.find(
+        (p) => p.periods.some(period => period.id === feature.properties.id)
+    );
     if (point) {
         selectPoint(point);
+        // Устанавливаем текущий период в соответствии с выбранной границей
+        const periodIndex = point.periods.findIndex(period => period.id === feature.properties.id);
+        if (periodIndex !== -1) {
+            currentPeriodIndex.value = periodIndex;
+        }
     }
 }
+
+const currentPeriodId = computed(() => {
+    if (selectedPoint.value && selectedPoint.value.periods) {
+        return selectedPoint.value.periods[currentPeriodIndex.value].id;
+    }
+    return null;
+});
 </script>
 
 <style scoped>

@@ -4,19 +4,20 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Sumer",
-        "startYear": -4500,
-        "endYear": -2000
+        "id": "meso-ubaid",
+        "name": "Mesopotamia - Ubaid Period",
+        "startYear": -6500,
+        "endYear": -3800
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
-            [45.0, 32.0],
-            [47.0, 32.0],
-            [47.0, 30.0],
-            [45.0, 30.0],
-            [45.0, 32.0]
+            [43.0, 37.0],
+            [48.0, 37.0],
+            [48.0, 30.0],
+            [43.0, 30.0],
+            [43.0, 37.0]
           ]
         ]
       }
@@ -24,18 +25,124 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Ancient Egypt",
+        "id": "meso-uruk",
+        "name": "Mesopotamia - Uruk Period",
+        "startYear": -4000,
+        "endYear": -3100
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [42.0, 36.0],
+            [47.0, 36.0],
+            [47.0, 31.0],
+            [42.0, 31.0],
+            [42.0, 36.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "meso-early-dynastic",
+        "name": "Mesopotamia - Early Dynastic Period",
+        "startYear": -2900,
+        "endYear": -2334
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [41.0, 35.0],
+            [46.0, 35.0],
+            [46.0, 30.0],
+            [41.0, 30.0],
+            [41.0, 35.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "meso-akkadian",
+        "name": "Mesopotamia - Akkadian Period",
+        "startYear": -2334,
+        "endYear": -2154
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [40.0, 36.0],
+            [48.0, 36.0],
+            [48.0, 29.0],
+            [40.0, 29.0],
+            [40.0, 36.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "meso-ur-iii",
+        "name": "Mesopotamia - Ur III Period",
+        "startYear": -2112,
+        "endYear": -2004
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [41.0, 34.0],
+            [46.0, 34.0],
+            [46.0, 29.0],
+            [41.0, 29.0],
+            [41.0, 34.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "meso-old-babylonian",
+        "name": "Mesopotamia - Old Babylonian Period",
+        "startYear": -2000,
+        "endYear": -1600
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [42.0, 35.0],
+            [47.0, 35.0],
+            [47.0, 28.0],
+            [42.0, 28.0],
+            [42.0, 35.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "egypt-early-dynastic",
+        "name": "Ancient Egypt - Early Dynastic Period",
         "startYear": -3100,
-        "endYear": -30
+        "endYear": -2686
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [31.0, 31.0],
-            [35.0, 31.0],
-            [35.0, 22.0],
-            [31.0, 22.0],
+            [33.0, 31.0],
+            [33.0, 29.0],
+            [31.0, 29.0],
             [31.0, 31.0]
           ]
         ]
@@ -44,19 +151,20 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Indus Valley",
-        "startYear": -3300,
-        "endYear": -1300
+        "id": "egypt-old-kingdom",
+        "name": "Ancient Egypt - Old Kingdom",
+        "startYear": -2686,
+        "endYear": -2181
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
-            [68.0, 31.0],
-            [75.0, 31.0],
-            [75.0, 23.0],
-            [68.0, 23.0],
-            [68.0, 31.0]
+            [31.0, 32.0],
+            [34.0, 32.0],
+            [34.0, 26.0],
+            [31.0, 26.0],
+            [31.0, 32.0]
           ]
         ]
       }
@@ -64,9 +172,199 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Ancient China",
-        "startYear": -2100,
-        "endYear": 221
+        "id": "egypt-first-intermediate",
+        "name": "Ancient Egypt - First Intermediate Period",
+        "startYear": -2181,
+        "endYear": -2055
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [30.0, 32.0],
+            [33.0, 32.0],
+            [33.0, 25.0],
+            [30.0, 25.0],
+            [30.0, 32.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "egypt-middle-kingdom",
+        "name": "Ancient Egypt - Middle Kingdom",
+        "startYear": -2055,
+        "endYear": -1650
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [31.0, 33.0],
+            [34.0, 33.0],
+            [34.0, 25.0],
+            [31.0, 25.0],
+            [31.0, 33.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "egypt-second-intermediate",
+        "name": "Ancient Egypt - Second Intermediate Period",
+        "startYear": -1650,
+        "endYear": -1550
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [30.0, 32.0],
+            [33.0, 32.0],
+            [33.0, 26.0],
+            [30.0, 26.0],
+            [30.0, 32.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "egypt-new-kingdom",
+        "name": "Ancient Egypt - New Kingdom",
+        "startYear": -1550,
+        "endYear": -1077
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [31.0, 34.0],
+            [36.0, 34.0],
+            [36.0, 22.0],
+            [31.0, 22.0],
+            [31.0, 34.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "indus-early-harappan",
+        "name": "Indus Valley - Early Harappan Phase",
+        "startYear": -3300,
+        "endYear": -2600
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [68.0, 32.0],
+            [72.0, 32.0],
+            [72.0, 27.0],
+            [68.0, 27.0],
+            [68.0, 32.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "indus-mature-harappan",
+        "name": "Indus Valley - Mature Harappan Phase",
+        "startYear": -2600,
+        "endYear": -1900
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [68.0, 33.0],
+            [75.0, 33.0],
+            [75.0, 24.0],
+            [68.0, 24.0],
+            [68.0, 33.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "indus-late-harappan",
+        "name": "Indus Valley - Late Harappan Phase",
+        "startYear": -1900,
+        "endYear": -1300
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [69.0, 32.0],
+            [74.0, 32.0],
+            [74.0, 25.0],
+            [69.0, 25.0],
+            [69.0, 32.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "china-xia-dynasty",
+        "name": "Ancient China - Xia Dynasty",
+        "startYear": -2070,
+        "endYear": -1600
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [105.0, 36.0],
+            [112.0, 36.0],
+            [112.0, 30.0],
+            [105.0, 30.0],
+            [105.0, 36.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "china-shang-dynasty",
+        "name": "Ancient China - Shang Dynasty",
+        "startYear": -1600,
+        "endYear": -1046
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [106.0, 37.0],
+            [114.0, 37.0],
+            [114.0, 29.0],
+            [106.0, 29.0],
+            [106.0, 37.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "china-zhou-dynasty",
+        "name": "Ancient China - Zhou Dynasty",
+        "startYear": -1046,
+        "endYear": -256
       },
       "geometry": {
         "type": "Polygon",
@@ -84,9 +382,10 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Minoan Civilization",
+        "id": "minoan-early",
+        "name": "Minoan Civilization - Early Minoan",
         "startYear": -3500,
-        "endYear": -1100
+        "endYear": -2100
       },
       "geometry": {
         "type": "Polygon",
@@ -97,6 +396,48 @@
             [26.0, 34.0],
             [24.0, 34.0],
             [24.0, 36.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "minoan-middle",
+        "name": "Minoan Civilization - Middle Minoan",
+        "startYear": -2100,
+        "endYear": -1600
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [24.0, 37.0],
+            [27.0, 37.0],
+            [27.0, 33.0],
+            [24.0, 33.0],
+            [24.0, 37.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "minoan-late",
+        "name": "Minoan Civilization - Late Minoan",
+        "startYear": -1600,
+        "endYear": -1100
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [25.0, 36.0],
+            [28.0, 36.0],
+            [28.0, 32.0],
+            [25.0, 32.0],
+            [25.0, 36.0]
           ]
         ]
       }

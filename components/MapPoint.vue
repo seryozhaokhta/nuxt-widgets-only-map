@@ -32,10 +32,20 @@ const emits = defineEmits(['selectPoint']);
 
 const isVisible = computed(() => props.point.year <= props.currentYear);
 
+function latLonToXY(lon, lat) {
+    const x = ((lon + 180) / 360) * 100;
+    const latRad = (lat * Math.PI) / 180;
+    const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
+    const y = (1 - (mercN / Math.PI)) * 50;
+    return { x, y };
+}
+
+const { x, y } = latLonToXY(props.point.x, props.point.y);
+
 const containerStyle = computed(() => ({
     position: 'absolute',
-    left: `${props.point.x}%`,
-    top: `${props.point.y}%`,
+    left: `${x}%`,
+    top: `${y}%`,
     transform: `translate(-50%, -50%) scale(${1 / props.zoomScale})`,
     transformOrigin: 'center',
 }));
