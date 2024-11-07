@@ -37,10 +37,17 @@ onMounted(async () => {
 .lower-container {
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
+    /* Измените на column для мобильных устройств */
     border-radius: var(--border-radius);
     width: 100%;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 600px) {
+    .lower-container {
+        flex-direction: column;
+    }
 }
 </style>

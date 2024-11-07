@@ -1,15 +1,15 @@
 <!-- components/MapWidget.vue -->
 
 <template>
-    <div class="map-widget">
-        <div class="current-year">{{ formattedCurrentYear }}</div>
+    <div class="map-widget" :class="{ 'map-widget--fullscreen': isFullScreen }" ref="mapWidget">
+        <div class="map-widget__current-year">{{ formattedCurrentYear }}</div>
 
-        <div class="map-container" ref="mapContainer" @wheel="handleWheel" @mousedown="startPan" @mousemove="panMap"
-            @mouseup="endPan" @mouseleave="endPan" @touchstart="startPanTouch" @touchmove="panMapTouch"
-            @touchend="endPan">
-            <div class="map-content" :style="mapStyle">
+        <div class="map-widget__container" ref="mapContainer" @wheel="handleWheel" @mousedown="startPan"
+            @mousemove="panMap" @mouseup="endPan" @mouseleave="endPan" @touchstart="startPanTouch"
+            @touchmove="panMapTouch" @touchend="endPan">
+            <div class="map-widget__content" :style="mapStyle">
                 <!-- Изображение карты -->
-                <img ref="mapImage" :src="mapSrc" alt="Карта мира" class="map-image" />
+                <img ref="mapImage" :src="mapSrc" alt="Карта мира" class="map-widget__image" />
 
                 <!-- Компонент границ -->
                 <MapBoundaries :currentYear="currentYear" :zoomScale="zoomScale" :mapPosition="mapPosition"
@@ -51,12 +51,12 @@
         </div>
 
         <MapControls v-model:currentYear="currentYear" :minYear="minYear" :maxYear="maxYear" @zoomIn="zoomIn"
-            @zoomOut="zoomOut" />
+            @zoomOut="zoomOut" @toggleFullScreen="toggleFullScreen" :isFullScreen="isFullScreen" />
     </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, nextTick } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue';
 import MapControls from './MapControls.vue';
 import MapPoint from './MapPoint.vue';
 import ModalWindow from './ModalWindow.vue';
@@ -88,6 +88,7 @@ const modalVisible = ref(false);
 const modalRef = ref(null);
 const pendingPoint = ref(null);
 const currentPeriodIndex = ref(0);
+const isFullScreen = ref(false);
 
 const minYear = ref(0);
 const maxYear = ref(0);
@@ -313,7 +314,7 @@ watch(currentYear, () => {
 
 watch(debouncedCurrentYear, () => {
     gsap.fromTo(
-        '.current-year',
+        '.map-widget__current-year',
         { opacity: 0, y: -10 },
         { opacity: 1, y: 0, duration: 0.3 }
     );
@@ -339,6 +340,84 @@ const currentPeriodId = computed(() => {
     }
     return null;
 });
+
+const mapWidget = ref(null);
+
+function toggleFullScreen() {
+    if (!isFullScreen.value) {
+        enterFullScreen();
+    } else {
+        exitFullScreen();
+    }
+}
+
+function enterFullScreen() {
+    const element = mapWidget.value;
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) { /* Safari */
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { /* IE11 */
+        element.msRequestFullscreen();
+    }
+}
+
+function exitFullScreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
+}
+
+function onFullScreenChange() {
+    isFullScreen.value = !!document.fullscreenElement;
+    if (isFullScreen.value) {
+        centerMapInFullscreen();
+    } else {
+        resetMapPosition();
+    }
+}
+
+function centerMapInFullscreen() {
+    nextTick(() => {
+        const containerWidth = mapContainer.value.clientWidth;
+        const containerHeight = mapContainer.value.clientHeight;
+        const contentWidth = mapContentWidth.value * zoomScale.value;
+        const contentHeight = mapContainer.value.clientHeight * zoomScale.value;
+
+        const initialMapPositionX = (containerWidth - contentWidth) / 2;
+        const initialMapPositionY = (containerHeight - contentHeight) / 2;
+
+        mapPosition.value.x = initialMapPositionX;
+        mapPosition.value.y = initialMapPositionY;
+    });
+}
+
+function resetMapPosition() {
+    mapPosition.value.x = 0;
+    mapPosition.value.y = 0;
+}
+
+const mapContentWidth = computed(() => {
+    if (isFullScreen.value) {
+        // Ширина карты в полноэкранном режиме
+        const vh = window.innerHeight;
+        return (vh * 16) / 9; // Соотношение сторон 16:9
+    } else {
+        return mapContainer.value.clientWidth;
+    }
+});
+
+onMounted(() => {
+    document.addEventListener('fullscreenchange', onFullScreenChange);
+});
+
+onBeforeUnmount(() => {
+    document.removeEventListener('fullscreenchange', onFullScreenChange);
+});
 </script>
 
 <style scoped>
@@ -349,28 +428,44 @@ const currentPeriodId = computed(() => {
     margin: 0 auto;
 }
 
-.current-year {
+.map-widget--fullscreen {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.map-widget__current-year {
     text-align: center;
     font-size: 24px;
     margin-bottom: 10px;
     color: #fff;
 }
 
-.map-container {
+.map-widget__container {
     overflow: hidden;
     position: relative;
     cursor: grab;
     width: 100%;
+    aspect-ratio: 16 / 9;
     height: 0;
     padding-bottom: 56.25%;
-    /* Соотношение сторон 16:9 */
 }
 
-.map-container:active {
+.map-widget--fullscreen .map-widget__container {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 0;
+}
+
+.map-widget__container:active {
     cursor: grabbing;
 }
 
-.map-content {
+.map-widget__content {
     position: absolute;
     top: 0;
     left: 0;
@@ -379,7 +474,16 @@ const currentPeriodId = computed(() => {
     transform-origin: top left;
 }
 
-.map-image {
+.map-widget--fullscreen .map-widget__content {
+    width: calc(100vh * 16 / 9);
+    height: 100%;
+    position: absolute;
+    left: 0%;
+    transform: none;
+    transform-origin: top left;
+}
+
+.map-widget__image {
     position: absolute;
     top: 0;
     left: 0;
@@ -389,38 +493,27 @@ const currentPeriodId = computed(() => {
     pointer-events: none;
 }
 
-.map-boundaries {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
-.map-boundaries polygon {
-    fill: rgba(255, 255, 255, 0.5);
-    stroke: #fff;
-    stroke-width: 0.5;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: fill 0.3s;
-}
-
-.map-boundaries polygon:hover {
-    fill-opacity: 0.7;
-}
-
 .map-point {
     position: absolute;
     z-index: 3;
 }
 
-.map-controls {
+.map-widget__controls {
     margin-top: 10px;
 }
 
-/* Дополнительные стили для модального контента */
+.map-widget--fullscreen .map-widget__controls {
+    order: 1;
+}
+
+.map-widget--fullscreen .map-widget__current-year {
+    order: 2;
+}
+
+.map-widget--fullscreen .map-widget__container {
+    order: 3;
+}
+
 .modal-title {
     font-size: 24px;
     margin: 0;
@@ -453,7 +546,7 @@ const currentPeriodId = computed(() => {
     margin-bottom: 10px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1270px) {
     .modal-title {
         font-size: 18px;
     }

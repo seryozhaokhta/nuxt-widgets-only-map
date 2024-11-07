@@ -77,6 +77,8 @@ defineExpose({
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 100%);
+    box-sizing: border-box;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .modal-header {
@@ -111,8 +113,40 @@ defineExpose({
 
 @media screen and (max-width: 600px) {
     .modal-content {
-        max-height: 100px;
+        max-height: 80vh;
         overflow-y: auto;
+        padding: 15px;
+    }
+
+    .modal-title {
+        font-size: 18px;
+    }
+
+    .modal-founded {
+        font-size: 14px;
+    }
+
+    .modal-period-title {
+        font-size: 16px;
+    }
+
+    .modal-period-description {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .modal-period-year {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+    .modal-description {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .close-button {
+        padding: 8px 16px;
     }
 }
 </style>
