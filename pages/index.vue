@@ -38,7 +38,6 @@ onMounted(async () => {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /* Измените на column для мобильных устройств */
     border-radius: var(--border-radius);
     width: 100%;
     padding: 20px;
